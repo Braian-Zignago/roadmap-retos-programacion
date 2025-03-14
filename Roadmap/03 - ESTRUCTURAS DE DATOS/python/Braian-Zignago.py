@@ -62,7 +62,7 @@ Almacenan elementos unicos a traves de su hash, NO SE PERMITEN DATOS DUPLICADOS.
 
 my_set = {'Braian', 'Zignago', 36}
 print(f'my set: {my_set}')
-my_set.add('braianifsul@gmail.com')
+my_set.add('email@gamil.com')
 print(f"My set whit add: {my_set}")
 
 
@@ -78,7 +78,7 @@ my_dict = {
 }
 print(f'My dict: {my_dict}')
 
-my_dict['email'] = 'braianifsul@gmail.com' # Insercion
+my_dict['email'] = 'email@gamil.com' # Insercion
 print(f'My dict whit add: {my_dict}')
 
 print(f'My dict whit select "name": {my_dict["name"]}') # Acceso
