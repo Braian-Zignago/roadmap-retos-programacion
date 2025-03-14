@@ -109,19 +109,23 @@ Ejercicio:  * Crea una agenda de contactos por terminal.
 
 
 agenda: dict = {}
+
+def no_name(name, func):
+    print (f" El contacto {name} no se encuentra en la agenda")
+    ag = input (f""" 1! {func} otro contacto   (Any key for exit)  2! Agregar el contacto {name}: """)
+    ag = ag.upper()
+    if ag == "2":
+        agregar(name)
+    elif ag == "1":
+        pass
+
 def buscar():
     global agenda
     name = input (" Ingrese el nombre del contacto que desea Buscar: ")
-    if name in agenda:
-            print (f"{name} : {agenda[name]}")
+    if name not in agenda:
+        no_name(name, "Buscar")
     else:
-        print (" El contacto no se encuentra en la agenda")
-        ag = input ("Desea agregarlo S/N: ")
-        ag = ag.upper()
-        if ag == "S":
-            agregar(name)
-        elif ag == "N":
-            pass
+        print (f"{name} : {agenda[name]}")
 
 def agregar(name = " "):
     global agenda
@@ -144,12 +148,7 @@ def actualizar():
     global agenda
     name = input ("Ingrese el nombre del contacto que quiere actualizar: ")
     if name not in agenda:
-        print (" El contacto no se encuentra en la agenda")
-        ag = input (f""" 1! Actulizar otro contacto   (Any key for exit)  2! Agregar el contacto {name}: """)
-        match ag:
-            case '1': actualizar()
-            case '2': agregar(name)
-            case _: pass
+        no_name(name, "Actualizar")
     else:
         while True:
             num = input (f"Ingrese el nuevo numero de {name} : ")
@@ -166,12 +165,7 @@ def eliminar():
     global agenda
     name = input ("Ingrese el nombre del contacto que quiere eliminar: ")
     if name not in agenda:
-        print (" El contacto no se encuentra en la agenda")
-        ag = input (f""" 1! Eliminar otro contacto   (Any key for exit)  2! Agregar el contacto {name}: """)
-        match ag:
-            case '1': eliminar()
-            case '2': agregar(name)
-            case _: pass
+        no_name(name, "Eliminar")
     else:
         del agenda[name]
         print (f"El contacto {name} se ha eliminado correctamente")
@@ -196,5 +190,5 @@ while True:
         case '2': print(f'2 Agregar {agregar()}')
         case '3': print(f'3 Actualizar {actualizar()}')
         case '4': print(f'4 Eliminar {eliminar()}')
-        case '5': print(f'Listar agenda:\n {listar()}')
+        case '5': print(f'{listar()}')
         case _: break
